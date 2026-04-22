@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C端娱乐直播系统培训课程</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--v4:#a78bfa;--v5:#8b5cf6;--v6:#7c3aed;--f4:#e879f9;--f5:#d946ef;--f6:#c026d3;--bg:#0a0a0f;--card:#13131a;--sec:#0f0f14;--white:#fff;--gray3:#d1d5db;--gray4:#9ca3af;--gray5:#6b7280}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--gray3);line-height:1.6}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:2rem}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(139,92,246,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(168,85,247,.1) 0%,transparent 50%)}
+    .blob{position:absolute;border-radius:50%;filter:blur(60px);animation:blob 6s ease-in-out infinite}
+    .blob1{top:5rem;right:10%;width:16rem;height:16rem;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(168,85,247,.15))}
+    .blob2{bottom:8rem;left:5%;width:20rem;height:20rem;background:linear-gradient(135deg,rgba(126,58,237,.15),rgba(109,40,217,.1));animation-duration:8s;animation-direction:reverse}
+    @keyframes blob{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.1) translateY(-20px)}}
+    .hero-content{position:relative;z-index:10;max-width:64rem;text-align:center}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:9999px;margin-bottom:1.5rem;font-size:.875rem;color:var(--v4)}
+    .hero h1{font-size:2.5rem;font-weight:700;color:var(--white);margin-bottom:1.5rem;line-height:1.2}
+    @media(min-width:640px){.hero h1{font-size:3rem}}
+    @media(min-width:768px){.hero h1{font-size:3.75rem}}
+    .gradient{background:linear-gradient(135deg,var(--v4),var(--f4),#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .subtitle{font-size:1.125rem;color:var(--gray4);max-width:42rem;margin:0 auto 2.5rem}
+    @media(min-width:640px){.subtitle{font-size:1.25rem}}
+    .btns{display:flex;flex-direction:column;gap:1rem;align-items:center;justify-content:center}
+    @media(min-width:640px){.btns{flex-direction:row}}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 2rem;font-size:1rem;font-weight:600;border-radius:9999px;text-decoration:none;cursor:pointer;border:none;transition:all .3s}
+    .btn-pri{background:linear-gradient(135deg,var(--v6),var(--f6));color:var(--white);box-shadow:0 10px 40px rgba(139,92,246,.3)}
+    .btn-pri:hover{transform:translateY(-2px);box-shadow:0 15px 50px rgba(139,92,246,.4)}
+    .btn-out{border:1px solid rgba(139,92,246,.3);color:var(--v4);background:transparent}
+    .btn-out:hover{background:rgba(139,92,246,.1)}
+    .stats{display:flex;justify-content:center;gap:2rem;margin-top:4rem;flex-wrap:wrap}
+    @media(min-width:640px){.stats{gap:4rem}}
+    .stat{text-align:center}
+    .stat-val{font-size:2rem;font-weight:700;color:var(--white)}
+    @media(min-width:640px){.stat-val{font-size:2.5rem}}
+    .stat-lbl{font-size:.875rem;color:var(--gray5)}
+    .scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;color:var(--gray5);cursor:pointer;animation:bounce 2s ease-in-out infinite}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    .sec{padding:4rem 1rem}
+    @media(min-width:768px){.sec{padding:6rem 2rem}}
+    .container{max-width:80rem;margin:0 auto}
+    .tag{display:inline-block;padding:.375rem .75rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:9999px;font-size:.875rem;color:var(--v4);margin-bottom:.75rem}
+    .sec-title{font-size:2rem;font-weight:700;color:var(--white);margin-bottom:1.5rem}
+    @media(min-width:768px){.sec-title{font-size:2.5rem}}
+    .ch-sec{background:var(--sec);min-height:100vh}
+    .ch-header{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+    @media(min-width:768px){.ch-header{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+    .progress{text-align:right}
+    .prog-val{font-size:2rem;font-weight:700;color:var(--v4)}
+    .prog-lbl{font-size:.875rem;color:var(--gray5)}
+    .prog-bar{width:100%;height:.75rem;background:rgba(255,255,255,.05);border-radius:9999px;overflow:hidden;margin-top:.5rem}
+    .prog-fill{height:100%;background:linear-gradient(135deg,var(--v5),var(--f5));border-radius:9999px;width:0;transition:width .5s}
+    .ben-card{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(168,85,247,.05));border:1px solid rgba(139,92,246,.3);border-radius:1rem;padding:1.5rem;margin-bottom:2rem}
+    .ben-card h3{font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:1rem}
+    .ben-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.75rem}
+    .ben-item{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:.75rem;font-size:.875rem;color:var(--gray3)}
+    .ben-item span{color:var(--v4)}
+    .ch-layout{display:grid;grid-template-columns:1fr;gap:1.5rem}
+    @media(min-width:1024px){.ch-layout{grid-template-columns:16rem 1fr}}
+    .sidebar{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:1rem;overflow:hidden}
+    @media(min-width:1024px){.sidebar{position:sticky;top:1rem}}
+    .side-hd{padding:1rem;background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(168,85,247,.05));border-bottom:1px solid rgba(255,255,255,.05)}
+    .side-hd h3{font-weight:600;color:var(--white)}
+    .side-hd p{font-size:.875rem;color:var(--gray5)}
+    .side-nav{max-height:70vh;overflow-y:auto}
+    .ch-btn{width:100%;display:flex;align-items:flex-start;gap:.75rem;padding:1rem;text-align:left;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer;transition:all .2s}
+    .ch-btn:hover{background:rgba(255,255,255,.03)}
+    .ch-btn.active{background:rgba(139,92,246,.1)}
+    .ch-icon{width:2rem;height:2rem;border-radius:.5rem;background:rgba(255,255,255,.1);color:var(--gray4);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.875rem}
+    .ch-btn.active .ch-icon{background:var(--v5);color:var(--white)}
+    .ch-btn.done .ch-icon{background:var(--f5);color:var(--white)}
+    .ch-info{flex:1;min-width:0}
+    .ch-num{font-size:.75rem;color:var(--v4)}
+    .ch-name{font-size:.875rem;font-weight:500;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ch-desc{font-size:.75rem;color:var(--gray5);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .ch-content{display:none}
+    .ch-content.show{display:block}
+    .ch-hd{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:1rem;padding:1.5rem;margin-bottom:1.5rem}
+    .ch-hd-top{display:flex;flex-direction:column;gap:1rem;margin-bottom:1rem}
+    @media(min-width:640px){.ch-hd-top{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+    .ch-hd-l{display:flex;align-items:center;gap:1rem}
+    .ch-icon-lg{width:3rem;height:3rem;border-radius:.75rem;background:linear-gradient(135deg,var(--v6),var(--f6));display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.5rem}
+    .ch-title-lg h3{font-size:1.5rem;font-weight:700;color:var(--white)}
+    .ch-title-lg p{color:var(--gray4);font-size:.875rem}
+    .mark-done{padding:.5rem 1rem;font-size:.875rem;font-weight:500;border-radius:9999px;cursor:pointer;transition:all .2s;background:transparent;border:1px solid rgba(139,92,246,.3);color:var(--v4)}
+    .mark-done:hover{background:rgba(139,92,246,.1)}
+    .mark-done.done{background:var(--f6);color:var(--white);border-color:var(--f6)}
+    .ch-meta{display:flex;flex-wrap:wrap;gap:1rem;font-size:.875rem;color:var(--gray5)}
+    .cont-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:1rem;padding:1.5rem;margin-bottom:1.5rem}
+    .cont-sec{margin-bottom:1.5rem}
+    .cont-sec:last-child{margin-bottom:0}
+    .cont-sec h4{font-size:1.125rem;font-weight:600;color:var(--white);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+    .cont-sec p{color:var(--gray4);line-height:1.75}
+    .cont-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .cont-list li{display:flex;align-items:flex-start;gap:.75rem;color:var(--gray4)}
+    .cont-list li::before{content:'';width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:var(--v4);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:.125rem}
+    .hi-box{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(168,85,247,.05));border:1px solid rgba(139,92,246,.2);border-radius:.75rem;padding:1.25rem}
+    .hi-box h4{color:var(--white)}
+    .hi-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .hi-list li{color:var(--gray3);display:flex;align-items:flex-start;gap:.5rem}
+    .hi-list li::before{content:'•';color:var(--v4);margin-top:.125rem}
+    .warn-box{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(244,63,94,.05));border:1px solid rgba(239,68,68,.2);border-radius:.75rem;padding:1.25rem}
+    .warn-box h4{color:#fca5a5}
+    .warn-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .warn-list li{color:var(--gray3);display:flex;align-items:flex-start;gap:.5rem}
+    .warn-list li::before{content:'⚠';color:#f87171;margin-top:.125rem}
+    .chk-box{background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(236,72,153,.05));border:1px solid rgba(168,85,247,.2);border-radius:.75rem;padding:1.25rem}
+    .chk-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .chk-list li{color:var(--gray3);display:flex;align-items:flex-start;gap:.75rem}
+    .chk-list li::before{content:'✓';color:var(--f4);font-weight:700;margin-top:.125rem}
+    .tbl-wrap{overflow-x:auto;border-radius:.75rem;border:1px solid rgba(139,92,246,.2)}
+    .tbl{width:100%;border-collapse:collapse;font-size:.875rem}
+    .tbl th{padding:.75rem 1rem;text-align:left;background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(168,85,247,.1));color:var(--white);font-weight:600;border-bottom:1px solid rgba(139,92,246,.2)}
+    .tbl td{padding:.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);color:var(--gray4)}
+    .tbl tr:nth-child(even){background:rgba(255,255,255,.02)}
+    .tbl td:first-child{color:var(--v3);font-weight:500}
+    .tbl td:nth-child(4){color:var(--f3);font-weight:600}
+    .tbl-tip{margin-top:1rem;font-size:.875rem;color:var(--gray5);font-style:italic}
+    .tpl-card{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(168,85,247,.05));border:1px solid rgba(139,92,246,.2);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem;transition:all .2s}
+    .tpl-card:hover{border-color:rgba(139,92,246,.4)}
+    .tpl-hd{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+    .tpl-icon{font-size:1.75rem}
+    .tpl-title{font-weight:600;color:var(--white)}
+    .tpl-type{font-size:.75rem;padding:.25rem .5rem;background:rgba(139,92,246,.2);color:var(--v3);border-radius:9999px}
+    .tpl-content{color:var(--gray4);font-style:italic;line-height:1.75}
+    .kc-card{background:linear-gradient(135deg,rgba(139,92,246,.05),rgba(168,85,247,.03));border:1px solid rgba(139,92,246,.2);border-radius:1rem;padding:1.5rem;margin-top:1.5rem}
+    .kc-card h4{font-size:1.125rem;font-weight:700;color:var(--white);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+    .kc-card h4 .sub{font-size:.875rem;font-weight:400;color:var(--gray5)}
+    .kc-item{border:1px solid rgba(255,255,255,.1);border-radius:.75rem;background:rgba(255,255,255,.03);margin-bottom:.75rem;overflow:hidden;transition:all .2s}
+    .kc-item:hover{border-color:rgba(139,92,246,.3)}
+    .kc-item summary{padding:.75rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.75rem;list-style:none}
+    .kc-item summary::-webkit-details-marker{display:none}
+    .kc-id{width:1.75rem;height:1.75rem;border-radius:.5rem;background:rgba(139,92,246,.2);color:var(--v3);font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .kc-title{flex:1;color:var(--gray2);font-weight:500}
+    .kc-arrow{color:var(--gray5);font-size:.75rem;transition:transform .2s}
+    .kc-item[open] .kc-arrow{transform:rotate(180deg)}
+    .kc-body{padding:0 1rem 1rem}
+    .kc-body p{color:var(--gray4);font-size:.875rem;line-height:1.75;padding-left:2.5rem}
+    .ppt-btn{display:flex;justify-content:center;margin-top:1.5rem}
+    .ppt-link{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;background:linear-gradient(135deg,var(--v6),var(--f6));color:var(--white);font-weight:600;font-size:.875rem;border-radius:.75rem;text-decoration:none;border:1px solid rgba(139,92,246,.3);box-shadow:0 10px 30px rgba(139,92,246,.2);transition:all .2s}
+    .ppt-link:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(139,92,246,.3)}
+    .cta-sec{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(168,85,247,.05));border-top:1px solid rgba(139,92,246,.2);border-bottom:1px solid rgba(139,92,246,.2)}
+    .cta-content{text-align:center;max-width:42rem;margin:0 auto}
+    .cta-content h2{font-size:2rem;font-weight:700;color:var(--white);margin-bottom:1rem}
+    .cta-content p{color:var(--gray4);margin-bottom:2rem}
+    footer{text-align:center;padding:2rem;color:var(--gray5);font-size:.875rem}
+    .fixed-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:40}
+    .float-btn{display:flex;align-items:center;gap:.5rem;padding:.875rem 1.25rem;background:linear-gradient(135deg,var(--v6),var(--f6));color:var(--white);font-weight:600;font-size:.875rem;border-radius:9999px;text-decoration:none;box-shadow:0 10px 40px rgba(139,92,246,.4);transition:all .3s;cursor:pointer;border:none}
+    .float-btn:hover{transform:scale(1.05);box-shadow:0 15px 50px rgba(139,92,246,.5)}
+    .modal-o{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem}
+    .modal-o.show{display:flex}
+    .modal{background:var(--card);border:1px solid rgba(139,92,246,.3);border-radius:1.5rem;padding:2rem;max-width:24rem;width:100%;text-align:center;position:relative}
+    .modal-x{position:absolute;top:1rem;right:1rem;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:var(--gray4);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;transition:all .2s}
+    .modal-x:hover{background:rgba(255,255,255,.2);color:var(--white)}
+    .modal-icon{width:4rem;height:4rem;border-radius:1rem;background:linear-gradient(135deg,var(--v6),var(--f6));display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .modal-icon svg{width:1.75rem;height:1.75rem;fill:var(--white)}
+    .modal h3{font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:.5rem}
+    .modal p{color:var(--gray4);font-size:.875rem;margin-bottom:1.5rem}
+    .qr-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
+    .qr-frame{padding:.75rem;background:var(--white);border-radius:.75rem}
+    .qr-frame img{width:12rem;height:12rem;object-fit:contain}
+    .modal-btn{width:100%;padding:.875rem;background:linear-gradient(135deg,var(--v6),var(--f6));color:var(--white);font-weight:600;border:none;border-radius:.75rem;cursor:pointer;transition:all .2s}
+    .modal-btn:hover{opacity:.9}
+    .modal-tip{font-size:.75rem;color:var(--gray5);margin-top:1rem}
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="hero-content">
+      <div class="badge"><span>✨</span><span>零基础也能成为人气主播</span></div>
+      <h1><span>C端娱乐直播</span><br><span class="gradient">系统培训课程</span></h1>
+      <p class="subtitle">从入门到实战，系统掌握娱乐直播核心技能<br>打造属于你的直播IP，开启主播职业生涯</p>
+      <div class="btns">
+        <a href="#chapters" class="btn btn-pri">开始学习</a>
+        <a href="#chapters" class="btn btn-out">查看大纲</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-val">16</div><div class="stat-lbl">⏱ 精品课时</div></div>
+        <div class="stat"><div class="stat-val">9</div><div class="stat-lbl">📚 系统章节</div></div>
+        <div class="stat"><div class="stat-val">1-3</div><div class="stat-lbl">📅 个月周期</div></div>
+      </div>
+    </div>
+    <div class="scroll" onclick="document.getElementById('chapters').scrollIntoView({behavior:'smooth'})"><span style="font-size:.75rem;margin-bottom:.5rem">向下滚动</span><span>↓</span></div>
+  </section>
+
+  <section id="chapters" class="ch-sec sec">
+    <div class="container">
+      <div class="ch-header">
+        <div>
+          <span class="tag">课程学习</span>
+          <h2 class="sec-title">九步进阶，成为专业主播</h2>
+        </div>
+        <div class="progress">
+          <div class="prog-val" id="prog-val">0%</div>
+          <div class="prog-lbl">学习进度</div>
+          <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+        </div>
+      </div>
+      <div class="ben-card">
+        <h3>🎁 学完这份课你能获得：</h3>
+        <div class="ben-list">
+          <div class="ben-item"><span>✅</span><span>9套可直接使用的话术模板</span></div>
+          <div class="ben-item"><span>✅</span><span>一份可打印的《直播准备清单》</span></div>
+          <div class="ben-item"><span>✅</span><span>一套专属人设定位方案</span></div>
+          <div class="ben-item"><span>✅</span><span>22张核心知识卡片，随时查阅复习</span></div>
+          <div class="ben-item"><span>✅</span><span>公会就业推荐通道（学习完成后）</span></div>
+        </div>
+      </div>
+      <div class="ch-layout">
+        <div class="sidebar">
+          <div class="side-hd"><h3>课程目录</h3><p id="done-count">0/9 章节已完成</p></div>
+          <div class="side-nav" id="chapter-nav"></div>
+        </div>
+        <div id="chapter-contents"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-sec sec">
+    <div class="container">
+      <div class="cta-content">
+        <h2>准备好开始你的主播之路了吗？</h2>
+        <p>扫码添加老师微信，领取课程资料，开启你的直播生涯</p>
+        <button class="btn btn-pri" onclick="openModal()">立即咨询</button>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>© 2024 娱乐直播培训课程. All rights reserved.</p></footer>
+
+  <div class="fixed-cta"><button class="float-btn" onclick="openModal()">💬 立即咨询</button></div>
+
+  <div class="modal-o" id="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal()">×</button>
+      <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M8.5 11.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm7 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM12 2C6.48 2 2 6.03 2 11c0 2.76 1.32 5.22 3.4 6.87L4.1 20.28a.5.5 0 0 0 .61.61L7.02 19.1A10.01 10.01 0 0 0 12 22c5.52 0 10-4.03 10-9s-4.48-9-10-9z"/></svg></div>
+      <h3>扫码添加老师微信</h3>
+      <p>领取课程资料 & 一对一指导</p>
+      <div class="qr-wrap"><div class="qr-frame"><img src="wechat-qr.jpg" alt="微信二维码"></div></div>
+      <button class="modal-btn" onclick="closeModal()">我知道了</button>
+      <p class="modal-tip">添加后备注「直播课程」，优先通过</p>
+    </div>
+  </div>
+
+<script>
+const chapters=[
+{id:1,title:"基础认知",icon:"💡",hours:1,summary:"行业前景、主播定位、赛道选择、人设打造",ppt:"https://vcntu8egk5hm.feishu.cn/file/K7tIbmz5voAl3yxgOsqcNKT9njc",sections:[
+{title:"行业现状与发展前景",type:"text",content:"直播行业已进入成熟期，主要分为四大平台类型：秀场直播（强调颜值与才艺展示）、才艺直播（专注唱歌跳舞等表演）、泛娱乐直播（聊天互动为主）、语音直播（不露脸的声音互动）。当前盈利模式成熟，礼物打赏是最主要收入来源，平台分成比例通常在50-70%之间。此外还有会员订阅、签约费、广告合作、直播带货等多元化变现方式。"},
+{title:"各阶段核心任务与收入预期",type:"table",headers:["阶段","时间","核心任务","收入预期"],rows:[["🌱 起步期","0-3个月","熟悉平台规则，完成首播，找到自己的风格定位","0 ~ 1万元/月"],["🌿 成长期","3-6个月","稳定直播频率，积累500+稳定粉丝","2万 ~ 5万元/月"],["🌳 稳定期","6-12个月","打造核心粉丝圈，稳定日收入","5万 ~ 10万元/月"],["🌟 突破期","1-2年","冲击榜单，探索多元化变现","10万+/月"]],tip:"💡 提醒：以上为参考区间，实际收入与个人努力、赛道选择、运营能力密切相关。坚持稳定直播的人，收入增速远高于三天打鱼两天晒网的选手。"},
+{title:"热门赛道分析",type:"list",content:["颜值聊天赛道：门槛较低，竞争激烈，需要强互动能力","才艺展示赛道：有特长优势明显，粉丝粘性高","搞笑娱乐赛道：需要较强创作能力和幽默感","情感陪伴赛道：适合性格温柔、善于倾听的主播","游戏直播赛道：需要游戏技术或搞笑解说能力"]},
+{title:"人设打造三原则",type:"highlight",content:["真实原则：做自己，不要硬凹人设，长期直播会暴露","讨喜原则：展现正面积极的形象，让观众愿意亲近","记忆点原则：有自己的特色标签，让人过目不忘"]}
+],knowledgeCards:[
+{id:"01",title:"平台速查",content:"抖音：公会分成45-60%，日活超6亿，秀场+电商双驱动。无公会42%。快手：粉丝粘性强，私域流量优势，50-65%分成。花椒：老牌秀场平台，50-70%分成，适合高颜值主播。哔哩哔哩：Z世代聚集地，弹幕互动强，50%基础+任务奖励。"},
+{id:"02",title:"发展路径",content:"🌱 0-3月：熟悉规则，完成首播，找到风格定位 → 🌿 3-6月：稳定开播，积累500+粉丝 → 🌳 6-12月：打造核心粉丝圈，稳定日收入 → 🌟 1-2年：冲击榜单，探索多元化变现。"},
+{id:"03",title:"六力模型",content:"主播六力模型：①表达力（口才流畅、感染力强）②互动力（善于接话、调动气氛）③才艺力（有特长、能展示）④心态力（抗压、乐观、坚持）⑤学习力（持续提升、优化迭代）⑥运营力（内容策划、粉丝维护）。"},
+{id:"04",title:"人设三原则",content:"①真实原则：做自己，不要硬凹人设，长期直播会暴露。②讨喜原则：展现正面积极的形象，让观众愿意亲近。③记忆点原则：有自己的特色标签，让人过目不忘，如口头禅、特定动作等。"},
+{id:"05",title:"五大赛道",content:"①颜值聊天：门槛低，竞争激烈，需强互动。②才艺展示：有特长优势，粉丝粘性高。③搞笑娱乐：需创作能力+幽默感。④情感陪伴：适合温柔善于倾听。⑤游戏直播：需游戏技术或搞笑解说。"}
+]},
+{id:2,title:"规则与合规风控",icon:"🛡️",hours:2,summary:"平台规则、合规红线、账号安全",ppt:"https://vcntu8egk5hm.feishu.cn/file/AUXEbucoVoMzl5xVGhqc6gSKnlh",sections:[
+{title:"流量推荐机制",type:"text",content:"平台采用逐级推荐机制。新主播开播时，系统会分配初始流量池（200-500人），根据直播数据表现（停留时长、互动率、点赞数等）决定是否推入更大流量池。表现好则进入二级流量池（1000-3000人），然后是三级（1万+）、高级（10万+）。前15分钟的表现尤为关键，直接决定能否获得更多推荐。"},
+{title:"主流平台分成比例",type:"highlight",content:["抖音：无公会42%，有公会45-60%（根据公会等级）","快手：50-65%（与粉丝量挂钩）","花椒：50-70%","B站：50%基础+任务奖励","视频号：40-50%"]},
+{title:"合规红线（永久封号）",type:"warning",content:["涉黄内容：任何形式的色情暗示、暴露着装、不当言论","涉政敏感：讨论政治话题、传播未经证实的消息","暴力恐怖：展示暴力行为、恐怖内容","违禁品：宣传或展示管制物品","欺诈行为：虚假宣传、诱导消费、诈骗"]},
+{title:"高危区（警告或短期封禁）",type:"warning",content:["低俗话术：脏话、不文明用语","诱导打赏：\"不刷礼物就不下播\"等道德绑架","虚假宣传：夸大产品功效、虚假承诺","搬运抄袭：使用他人内容未授权","负能量传播：抱怨、攻击他人、消极情绪"]},
+{title:"账号安全保护清单",type:"checklist",content:["绑定手机号并开启双重验证","设置强密码（字母+数字+符号，8位以上）","定期更换密码（建议3个月一次）","不要将账号密码告诉任何人","开播前检查账号状态是否正常","保留平台客服联系方式"]}
+],knowledgeCards:[
+{id:"06",title:"流量池机制",content:"平台采用逐级推荐机制。新主播开播分配初始流量池（200-500人），根据数据（停留时长、互动率、点赞数等）决定是否进入更大流量池。前15分钟表现尤为关键。"},
+{id:"07",title:"合规红线",content:"永久封号红线：①涉黄内容②涉政敏感③暴力恐怖④违禁品宣传⑤欺诈行为。遵守规则是一切的基础，一次违规可能让所有积累清零。"},
+{id:"21",title:"账号设置清单",content:"开播前必查：①绑定手机+双重验证②强密码③定期更换密码④不将账号密码告知任何人⑤检查账号状态正常⑥保留平台客服联系方式。"}
+]},
+{id:3,title:"前期筹备",icon:"📷",hours:2,summary:"设备选择、场景布置、内容策划",ppt:"https://vcntu8egk5hm.feishu.cn/file/C6gLbxGG8oDl4gxFhkQcMYjvnjx",sections:[
+{title:"入门配置方案（1000元内）",type:"highlight",content:["手机：现有手机即可，确保摄像头清晰","三脚架：50-100元，可升降调节","补光灯：100-200元环形灯，冷暖双色","麦克风：200-300元有线领夹麦","耳机：50-100元监听耳机","背景布置：50-200元按需购买"]},
+{title:"进阶级配置（3000-5000元）",type:"highlight",content:["手机：iPhone 14 Pro或同等级安卓旗舰","专业灯光：主灯+补光+轮廓灯组合套装","麦克风：罗德Wireless GO II无线麦","声卡：艾肯或森然入门声卡","背景：定制背景板或绿幕"]},
+{title:"开播前检查清单",type:"checklist",content:["设备电量充足或已连接电源","网络连接稳定（建议使用WiFi，准备4G备用）","补光灯已开启并调整到位","麦克风测试正常，音量适中","背景整洁，无杂乱物品","APP已更新至最新版本","妆容发型整理完毕","准备好水杯和小零食"]},
+{title:"四种直播间风格",type:"highlight",content:["温馨居家风：暖色调灯光，家居装饰、舒适沙发","潮流时尚风：霓虹灯牌、潮流海报、个性摆件","简约专业风：纯色背景、极简装饰、干净整洁","才艺表演风：乐器展示、舞台灯光、专业感强"]}
+],knowledgeCards:[
+{id:"08",title:"设备配置",content:"入门配置（1000元内）：三脚架50-100元，环形补光灯100-200元，有线领夹麦200-300元。进阶级（3000-5000元）：iPhone 14 Pro+专业灯光套装+罗德Wireless GO II无线麦+声卡。新手不要过度投资，设备不是决定性因素。"},
+{id:"09",title:"场景四风格",content:"①温馨居家风：暖色调灯光+家居装饰②潮流时尚风：霓虹灯牌+个性摆件③简约专业风：纯色背景+极简装饰④才艺表演风：舞台灯光+乐器展示。选择符合自己人设的风格，不要盲目跟风。"},
+{id:"22",title:"开播前3分钟",content:"开播前3分钟决定观众去留！①检查设备②调整状态：深呼吸+微笑③热场音乐④欢迎早期进房粉丝⑤自我介绍+今日主题预告+福利预告。"}
+]},
+{id:4,title:"形象管理与表现力",icon:"✨",hours:2,summary:"妆容造型、话术技巧、情绪表达",ppt:"https://vcntu8egk5hm.feishu.cn/file/CoSDb7aWcoDMvXxZXL9czYSjnSg",sections:[
+{title:"上镜妆容要点",type:"text",content:"直播妆容与日常妆容有所不同。底妆要自然但有一定遮瑕力，镜头会吃妆。眉毛根据脸型调整：圆脸适合挑眉显脸瘦，长脸适合平眉显柔和，方脸适合柔和眉形。眼妆是重点，要放大眼睛，内眼线+外眼线+睫毛必不可少。腮红提升气色，口红根据风格选择：正红色有气场、豆沙色温柔、橘色活泼。"},
+{title:"发型与脸型搭配",type:"highlight",content:["圆脸：高马尾、半扎发拉长脸型，避免齐刘海","长脸：空气刘海、波浪卷发增加横向宽度","方脸：侧分卷发、蓬松发型柔化棱角","鹅蛋脸：百搭，各种发型都适合","心形脸：中分长发平衡额头宽度"]},
+{title:"镜头感训练",type:"list",content:["眼神：看镜头而非屏幕，与观众建立眼神交流","体态：挺直腰背，肩膀打开，显得精神自信","距离：保持适当距离，既不过远也不过近","角度：找到最佳上镜角度，通常略高于水平线","手势：适当运用手势增强表达，但不要过度"]},
+{title:"情绪表达四步法",type:"highlight",content:["收到礼物：眼睛发亮+惊喜表情+真诚感谢","粉丝离开：温暖不舍+期待下次+记得回来","氛围好：兴奋热情+带动全场+分享快乐","遇低谷：积极乐观+自我调侃+相信会好"]}
+],templates:[
+{icon:"👋",title:"开场话术 - 亲和型",type:"通用",content:"嗨~大家好呀，欢迎来到XX的直播间。我是XX，一个喜欢聊天、喜欢交朋友的人。今天是我们第一次见面吗？没关系，以后就是朋友啦！进来就是缘分，给主播点个关注吧~"},
+{icon:"⚡",title:"开场话术 - 活力型",type:"通用",content:"各位小伙伴们大家晚上好！欢迎来到XX的直播间！我是你们的主播XX，今晚让我们一起嗨起来！新来的朋友们记得点个关注，精彩马上开始！"},
+{icon:"💝",title:"开场话术 - 温柔型",type:"通用",content:"晚上好呀，欢迎所有进来直播间的小可爱们。我是XX，很高兴能在这里遇见你。如果你也喜欢轻松温暖的氛围，那就留下来陪我聊聊天吧~"},
+{icon:"👋",title:"互动话术 - 欢迎",type:"互动",content:"欢迎XX进入直播间！头像真好看/名字很特别/等级好高！是第一次来吗？"},
+{icon:"💬",title:"互动话术 - 提问",type:"互动",content:"宝宝们，你们觉得XX怎么样？在评论区告诉我你们的想法呀！"}
+],knowledgeCards:[
+{id:"10",title:"单场直播流程",content:"标准流程：开场阶段（0-10分钟）热场欢迎+抛出主题；主体阶段（10-70分钟）核心内容+高频互动+话题延伸；收尾阶段（最后10分钟）感谢粉丝+预告下次+温暖道别。"},
+{id:"11",title:"周主题规划",content:"周一话题日（热点讨论）→ 周二才艺日（展示特长）→ 周三粉丝日（互动专场）→ 周四游戏日（直播小游戏）→ 周五点歌日（唱歌互动）→ 周六福利日（抽奖连麦）→ 周日复盘日（总结分享）。"}
+]},
+{id:5,title:"控场与互动核心",icon:"📈",hours:3,summary:"直播全流程、高效互动、突发处理",ppt:"https://vcntu8egk5hm.feishu.cn/file/Y46SbxztLoa1m8xR4cVcJWXNnJb",sections:[
+{title:"开场标准流程",type:"text",content:"开播前3分钟是黄金时间，决定了观众的去留。标准开场流程：0-2分钟热场，播放背景音乐，调整状态，欢迎早期进房的粉丝；3-5分钟正式开场，自我介绍+今日主题预告+福利预告；5-10分钟留人阶段，抛出有趣话题或展示才艺。记住：开场要充满能量，状态要饱满。"},
+{title:"主体内容节奏控制",type:"highlight",content:["每10-15分钟设置一个小高潮（才艺展示/游戏/话题讨论）","保持高频互动，不要让直播间冷场超过30秒","观察数据面板，及时调整内容方向","感谢打赏要及时，但不要打断正在讲的内容","适时引导关注、点赞、分享"]},
+{title:"突发情况处理指南",type:"warning",content:["【冷场没人说话】主动抛话题：'打个1让我看看谁在'、'今天大家都好安静呀'","【黑粉恶意评论】无视是最好的回应，或者幽默化解，绝对不要对骂","【设备故障】幽默化解：'我的信号去旅游了'，同时尽快修复","【说错话】直接略过不解释，解释反而放大错误"]}
+],templates:[
+{icon:"🍜",title:"化解冷场 - 主动抛话题",type:"救场",content:"屏幕前的你们都在干嘛呢？有没有在吃饭？吃的什么好吃的呀？"},
+{icon:"👆",title:"化解冷场 - 引导互动",type:"救场",content:"新来的朋友们扣个1，让我看看有多少新朋友呀！"},
+{icon:"😎",title:"化解黑粉 - 幽默化解",type:"应对",content:"这位朋友看来是来给我增加人气的，谢谢你呀！"},
+{icon:"☕",title:"设备故障 - 幽默化解",type:"应对",content:"哎呀，我的网络可能去喝咖啡了，稍等一下马上回来~"},
+{icon:"👋",title:"收尾话术",type:"结束",content:"时间过得真快，今天的直播就要接近尾声了。感谢所有陪伴我的小伙伴们，明天同一时间我们再见，记得点关注不迷路哦！拜拜~"}
+],knowledgeCards:[
+{id:"15",title:"黑粉应对",content:"黑粉应对原则：无视是最好的回应。可以幽默化解：'这位朋友看来心情不好呀，要不要聊聊？'。微笑说'我们友好交流'同时投诉踢人。绝对不要对骂，对骂只会让事件升级。"}
+]},
+{id:6,title:"粉丝生态与礼物转化",icon:"👥",hours:2,summary:"粉丝引流、关系维护、礼物转化",ppt:"https://vcntu8egk5hm.feishu.cn/file/FLrVbXBqSomghWxBAZlczzF7nQe",sections:[
+{title:"粉丝分层与维护策略",type:"text",content:"游客（路过进房）：热情欢迎，展示亮点，争取留下。新粉（关注3天内）：记住名字，主动互动，建立联系。老粉（常来看但不怎么消费）：维护好关系，是未来转化的基础。铁粉（活跃互动）：私下维护，建粉丝群，给专属福利。大哥（大额打赏）：重点服务，私聊维护，记住喜好和习惯。"},
+{title:"粉丝维护具体方法",type:"highlight",content:["记住粉丝名字和特点，下次来能叫出名字","建立粉丝群，下播后在群里互动","记住粉丝的喜好，聊天时有针对性地聊","给老粉专属福利：生日祝福、专属感谢词","适度示弱，让粉丝有保护欲和参与感","分享日常生活，增加亲近感"]},
+{title:"礼物转化话术 - 正确示范",type:"highlight",content:["✅ '觉得主播还可以的，可以刷个小礼物支持一下'","✅ '一杯奶茶钱我就很开心了，主要是心意'","✅ '谢谢XX的礼物，有你的支持我更有动力了'","✅ '新来的朋友们觉得不错的可以点个关注'"]},
+{title:"礼物转化话术 - 错误示范",type:"warning",content:["❌ '不刷礼物就是不爱我'","❌ '别人都刷了你不刷'","❌ '不刷礼物就下播'","❌ '这么小气吗，连个小心心都不送'","❌ '白嫖党请离开'"]}
+],templates:[
+{icon:"🎁",title:"感谢打赏话术",type:"感恩",content:"感谢XX大哥的XX礼物！大哥真是太客气了，每次来都给我支持，太感动了！有你在我就有底气继续播下去！"},
+{icon:"💝",title:"感谢打赏 - 小额",type:"感恩",content:"谢谢XX的小心心！礼轻情意重，有这份心意我就很开心了！"},
+{icon:"🌟",title:"感谢打赏 - 大额",type:"感恩",content:"哇！感谢XX的XX！这太破费了！真的非常感谢你的支持，我会继续努力不辜负你的！"},
+{icon:"💪",title:"引导打赏 - 温和版",type:"转化",content:"觉得主播还可以的朋友们，可以送个小心心支持一下，你们的支持是我最大的动力！"}
+],knowledgeCards:[
+{id:"13",title:"粉丝分层管理",content:"游客：热情欢迎争取留下 → 新粉（3天内）：记住名字主动互动 → 老粉（常看但少消费）：维护关系 → 铁粉（活跃互动）：私下维护建粉丝群 → 大哥（大额打赏）：重点服务私聊维护。"},
+{id:"14",title:"礼物引导",content:"转化时机：才艺展示后/气氛热烈时/收到第一份礼物后。温和话术：'觉得主播还可以的点个关注不迷路'。不要道德绑架。转化频率：每15-20分钟引导一次即可。"}
+]},
+{id:7,title:"直播流量运营",icon:"📈",hours:1,summary:"流量获取、短视频引流",ppt:"https://vcntu8egk5hm.feishu.cn/file/BPgtbAOwBoPElRxtGTecYHTGnVf",sections:[
+{title:"流量来源分类",type:"text",content:"直播间的流量主要分为公域流量和私域流量。公域流量来自平台推荐：系统推荐（根据标签和表现分配）、搜索流量（优化标题和标签）、活动流量（参与平台活动获得）。私域流量来自自有渠道：粉丝群通知、短视频引流、其他社交平台导流。对于新主播，公域流量是主要来源；对于成熟主播，私域流量更加稳定和可控。"},
+{title:"流量获取技巧",type:"highlight",content:["标签优化：设置精准的兴趣标签，匹配目标观众","标题吸睛：直播标题要吸引人，有悬念或福利","封面精美：直播封面要清晰美观，突出亮点","时段选择：避开大主播时段，选择竞争小的黄金时间","保持时长：单次直播建议2小时以上，系统更推荐"]},
+{title:"短视频引流策略",type:"text",content:"短视频是直播引流的重要渠道。策略如下：开播前2-4小时发布预热视频，预告直播内容；剪辑直播精彩片段发布，吸引新粉丝；制作直播预告视频，制造期待；分享个人日常vlog，增加亲近感；展示才艺短视频，吸引精准粉丝。"}],
+knowledgeCards:[
+{id:"19",title:"黄金时段",content:"最佳直播时段：19:00-23:00（流量最大，竞争也最大）→ 12:00-14:00（午休时段，竞争小，适合新人）→ 22:00-01:00（深夜档，竞争小，但流量有限）。新人建议避开大主播时段。"},
+{id:"20",title:"短视频引流",content:"短视频引流策略：开播前2-4小时发布预热视频；剪辑直播精彩片段发布；制作直播预告视频制造期待；分享个人日常vlog增加亲近感。"}
+]},
+{id:8,title:"数据分析与长期发展",icon:"📊",hours:1,summary:"数据复盘、长期规划",ppt:"https://vcntu8egk5hm.feishu.cn/file/Eo3jbPVI4oQPVVxAeNicE2IEnDd",sections:[
+{title:"核心数据指标解读",type:"highlight",content:["观看人数：反映流量获取能力","停留时长：反映内容吸引力，及格线3分钟以上","互动率：评论、点赞、分享数据，反映粉丝活跃度","关注转化率：新增关注/观看人数，及格线5%以上","打赏率：送礼人数/观看人数，反映变现能力","人均观看时长：总时长/人数，最重要的质量指标"]},
+{title:"数据复盘方法",type:"text",content:"每次直播结束后，花10分钟做数据复盘。记录亮点：今天做得好的地方是什么？分析问题：哪里可以改进？制定计划：下次直播要尝试什么新方法？设定什么小目标？坚持复盘，每周都能看到自己的进步。"},
+{title:"主播职业发展路径",type:"highlight",content:["初级阶段（0-6个月）：学习基础，积累粉丝，找到定位","积累阶段（6-12个月）：稳定输出，提升数据，形成风格","成熟阶段（1-2年）：粉丝稳定，收入可观，个人IP成型","头部阶段（2年以上）：行业影响力，多元变现，可持续运营"]},
+{title:"常见误区规避",type:"warning",content:["同质化：不要盲目模仿大主播，要有自己的特色","消极直播：不要抱怨、不要负能量，观众是来放松的","过度迎合：保持自我底线，不要为了打赏失去原则","急功近利：粉丝积累需要时间，不要急于求成","忽视健康：合理作息，身体是长期直播的本钱"]}
+],knowledgeCards:[
+{id:"16",title:"数据六指标",content:"核心指标：①观看人数（流量获取能力）②停留时长（内容吸引力，及格3分钟）③互动率（评论点赞分享，反映活跃度）④关注转化率（新增关注/观看人数，及格5%）⑤打赏率（送礼人数/观看人数）⑥人均观看时长（最重要的质量指标）。"},
+{id:"17",title:"复盘五步法",content:"①记录亮点②分析问题③制定计划④设定目标⑤跟踪改进。五步法循环使用，每周都能看到进步。坚持复盘是快速成长的关键。"},
+{id:"18",title:"四大误区",content:"①同质化：不要盲目模仿大主播②消极直播：不要抱怨负能量③过度迎合：保持底线④急功近利：粉丝积累需要时间。避开这些坑，少走弯路。"}
+]},
+{id:9,title:"实操考核与答疑",icon:"🏆",hours:2,summary:"模拟考核、评分标准",ppt:"https://vcntu8egk5hm.feishu.cn/file/VYaBbvk4lou4ZSxUU9UcLmz0nBe",sections:[
+{title:"模拟直播考核流程",type:"text",content:"实操考核是对学习成果的全面检验。考核分为四个环节：开场准备（5分钟）：设备调试、妆容整理、背景检查、心态调整。开场环节（5分钟）：热场、自我介绍、主题预告、留人技巧。直播内容（15-20分钟）：核心内容展示、互动能力、话术运用、氛围控制。收尾环节（5分钟）：感谢粉丝、预告下次、温暖道别。"},
+{title:"考核评分标准",type:"highlight",content:["设备操作（15分）：设备使用熟练、画面清晰、声音正常","话术表达（20分）：开场话术、互动话术、转化话术运用","互动能力（20分）：观众回应、冷场处理、气氛调动","内容质量（20分）：内容丰富、节奏把控、吸引力","形象气质（15分）：妆容得体、仪态大方、表情自然","整体印象（10分）：专业度、亲和力、记忆点"]},
+{title:"考核通过标准",type:"text",content:"总分100分，60分及格，80分良好，90分以上优秀。及格即可获得结业证书；良好可获得导师一对一指导机会；优秀可获得平台推荐资源。未通过者可以申请补考，导师会针对薄弱环节给出改进建议。"},
+{title:"后续学习资源",type:"highlight",content:["直播平台规则手册（PDF电子版）","话术模板大全（Word文档）","直播策划表模板（Excel）","数据复盘表模板（Excel）","优质主播案例合集（视频）","导师答疑群（持续服务）"]}
+],knowledgeCards:[
+{id:"23",title:"心态管理",content:"直播是长期事业，心态管理至关重要。低谷期是每个主播都会经历的，保持稳定开播频率是度过低谷的最好方法。不要和头部主播比，和昨天的自己比。记住：坚持就是胜利，放弃就是零。"}
+]}];
+const numeral=["一","二","三","四","五","六","七","八","九"];
+let done=[];
+let active=1;
+function updateProgress(){const p=Math.round(done.length/9*100);document.getElementById('prog-val').textContent=p+'%';document.getElementById('prog-fill').style.width=p+'%';document.getElementById('done-count').textContent=done.length+'/9 章节已完成'}
+function renderNav(){const nav=document.getElementById('chapter-nav');nav.innerHTML='';chapters.forEach(c=>{const btn=document.createElement('button');btn.className='ch-btn'+(c.id===active?' active':'')+(done.includes(c.id)?' done':'');btn.onclick=()=>showChapter(c.id);btn.innerHTML=`<div class="ch-icon">${done.includes(c.id)?'✓':c.icon}</div><div class="ch-info"><div class="ch-num">第${numeral[c.id-1]}章</div><div class="ch-name">${c.title}</div><div class="ch-desc">${c.hours}课时</div></div>`;nav.appendChild(btn)})}
+function renderContent(c){const cont=document.getElementById('chapter-contents');let html=`<div class="ch-content show" id="ch-${c.id}"><div class="ch-hd"><div class="ch-hd-top"><div class="ch-hd-l"><div class="ch-icon-lg">${c.icon}</div><div class="ch-title-lg"><h3>第${numeral[c.id-1]}章 ${c.title}</h3><p>${c.summary}</p></div></div><button class="mark-done${done.includes(c.id)?' done':''}" onclick="toggleDone(${c.id})">${done.includes(c.id)?'✓ 已完成':'○ 标记完成'}</button></div><div class="ch-meta"><span>⏱ ${c.hours} 课时</span><span>📚 ${c.sections.length} 个知识点</span>${c.templates?'<span>💬 '+c.templates.length+' 个话术模板</span>':''}</div></div><div class="cont-card">`;c.sections.forEach(s=>{html+=renderSection(s)});if(c.templates){html+='</div><div class="cont-card"><h4 style="font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:1rem">💬 实用话术模板</h4>';c.templates.forEach(t=>{html+=`<div class="tpl-card"><div class="tpl-hd"><span class="tpl-icon">${t.icon}</span><span class="tpl-title">${t.title}</span><span class="tpl-type">${t.type}</span></div><p class="tpl-content">"${t.content}"</p></div>`})}}html+='</div>';if(c.knowledgeCards&&c.knowledgeCards.length>0){html+=`<div class="kc-card"><h4>📌 相关知识卡片<span class="sub">（点击展开详情）</span></h4>`;c.knowledgeCards.forEach(k=>{html+=`<details class="kc-item"><summary><span class="kc-id">${k.id}</span><span class="kc-title">${k.title}</span><span class="kc-arrow">▼</span></summary><div class="kc-body"><p>${k.content}</p></div></details>`});html+='</div>'}if(c.ppt){html+=`<div class="ppt-btn"><a href="${c.ppt}" target="_blank" class="ppt-link">📎 下载PPT</a></div>`}html+='</div>';cont.innerHTML=html}
+function renderSection(s){let html=`<div class="cont-sec">`;if(s.type==='text'){html+=`<h4>${s.title}</h4><p>${s.content}</p>`}else if(s.type==='list'){html+=`<h4>${s.title}</h4><ul class="cont-list">${s.content.map(i=>`<li>${i}</li>`).join('')}</ul>`}else if(s.type==='highlight'){html+=`<div class="hi-box"><h4>${s.title}</h4><ul class="hi-list">${s.content.map(i=>`<li>${i}</li>`).join('')}</ul></div>`}else if(s.type==='warning'){html+=`<div class="warn-box"><h4>${s.title}</h4><ul class="warn-list">${s.content.map(i=>`<li>${i}</li>`).join('')}</ul></div>`}else if(s.type==='checklist'){html+=`<div class="chk-box"><ul class="chk-list">${s.content.map(i=>`<li>${i}</li>`).join('')}</ul></div>`}else if(s.type==='table'){html+=`<h4>${s.title}</h4><div class="tbl-wrap"><table class="tbl"><thead><tr>${s.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${s.rows.map(r=>`<tr>${r.map((c,i)=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${s.tip?`<p class="tbl-tip">${s.tip}</p>`:''}`}html+='</div>';return html}
+function showChapter(id){active=id;renderNav();renderContent(chapters.find(c=>c.id===id))}
+function toggleDone(id){if(done.includes(id)){done=done.filter(d=>d!==id)}else{done.push(id)}updateProgress();renderNav();renderContent(chapters.find(c=>c.id===active))}
+function openModal(){document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+renderNav();renderContent(chapters[0]);updateProgress()</script>
+</body>
+</html>
