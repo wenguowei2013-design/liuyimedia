@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>刘易传媒 - 娱乐直播培训课程</title>
+  <title>六一朝壹传媒 - 娱乐直播培训课程</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -17,6 +17,13 @@
     .gradient-text { background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .pulse { animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  
+    /* 微信二维码弹窗 */
+    .wechat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal-content { background: white; border-radius: 16px; padding: 32px; text-align: center; max-width: 360px; }
+    .wechat-modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 32px; cursor: pointer; }
+
   </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -24,14 +31,14 @@
 <!-- 导航栏 -->
 <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <div class="text-xl font-bold gradient-text">刘易传媒</div>
+    <div class="text-xl font-bold gradient-text">六一朝壹传媒</div>
     <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
       <a href="#course" class="hover:text-white transition">课程介绍</a>
       <a href="#chapters" class="hover:text-white transition">课程大纲</a>
       <a href="#samples" class="hover:text-white transition">免费样课</a>
       <a href="#about" class="hover:text-white transition">关于课程</a>
     </div>
-    <a href="#contact" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition">添加微信</a>
+    <a href="javascript:openWechatModal()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition">添加微信</a>
   </div>
 </nav>
 
@@ -328,9 +335,24 @@
 <!-- 页脚 -->
 <footer class="bg-gray-900 border-t border-gray-800 py-12">
   <div class="max-w-6xl mx-auto px-4 text-center">
-    <p class="text-gray-500 text-sm">© 2026 刘易传媒 · 娱乐直播培训课程 · 完整版 v1.5</p>
+    <p class="text-gray-500 text-sm">© 2026 六一朝壹传媒 · 娱乐直播培训课程 · 完整版 v1.5</p>
   </div>
 </footer>
+
+
+<!-- 微信二维码弹窗 -->
+<div class="wechat-modal" id="wechatModal" onclick="if(event.target===this)closeWechatModal()">
+  <span class="wechat-modal-close" onclick="closeWechatModal()">&times;</span>
+  <div class="wechat-modal-content">
+    <h3 style="color:#333;font-size:20px;font-weight:bold;margin-bottom:16px;">扫码添加微信</h3>
+    <img src="wechat-qr.jpg" alt="微信二维码" style="width:260px;height:260px;border-radius:8px;">
+    <p style="color:#666;font-size:14px;margin-top:16px;">长按识别二维码 · 备注"课程"优先通过</p>
+  </div>
+</div>
+<script>
+function openWechatModal(){document.getElementById('wechatModal').classList.add('active');}
+function closeWechatModal(){document.getElementById('wechatModal').classList.remove('active');}
+</script>
 
 </body>
 </html>
