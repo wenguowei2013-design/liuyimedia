@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>六一朝壹传媒 - 娱乐直播培训课程</title>
+  <script src="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.js"></script>
+  
+  <style>
+    * { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+    .hero-bg {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(99,102,241,0.3); }
+    .gradient-text { background: linear-gradient(135deg, #667eea, #764ba2, #f093fb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  
+    /* 微信二维码弹窗 */
+    .wechat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal-content { background: white; border-radius: 16px; padding: 32px; text-align: center; max-width: 360px; }
+    .wechat-modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 32px; cursor: pointer; }
+
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- 导航栏 -->
+<nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-800">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="text-xl font-bold gradient-text">六一朝壹传媒</div>
+    <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
+      <a href="#course" class="hover:text-white transition">课程介绍</a>
+      <a href="#chapters" class="hover:text-white transition">课程大纲</a>
+      <a href="#samples" class="hover:text-white transition">免费样课</a>
+      <a href="#about" class="hover:text-white transition">关于课程</a>
+    </div>
+    <a href="javascript:openWechatModal()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition">添加微信</a>
+  </div>
+</nav>
+
+<!-- 英雄区 -->
+<section class="hero-bg min-h-screen flex items-center justify-center text-center px-4 pt-20">
+  <div class="max-w-4xl">
+    <div class="inline-block bg-purple-900/50 border border-purple-500/30 rounded-full px-4 py-1 text-sm text-purple-300 mb-6">
+      🎯 零基础新人主播系统培训 · 16课时 · 1-3个月培养周期
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+      娱乐直播<br><span class="gradient-text">培训课程</span>
+    </h1>
+    <p class="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
+      从行业认知到话术实战，16课时系统学习，帮你从0开始成为专业娱乐主播
+    </p>
+    <p class="text-gray-500 mb-10">版本：完整版 v1.5 | 9章精华内容 | 样课免费体验</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#chapters" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition">
+        🚀 开始学习
+      </a>
+      <a href="#samples" class="border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-medium text-lg hover:bg-gray-800 transition">
+        📖 先看免费样课
+      </a>
+    </div>
+    <div class="mt-16 grid grid-cols-3 gap-8 max-w-xl mx-auto">
+      <div>
+        <div class="text-3xl font-black text-purple-400">9</div>
+        <div class="text-gray-500 text-sm">章课程体系</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-pink-400">16</div>
+        <div class="text-gray-500 text-sm">课时精华</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-blue-400">100%</div>
+        <div class="text-gray-500 text-sm">实操干货</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 课程介绍 -->
+<section id="course" class="py-24 bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-black mb-4">这门课能帮你收获什么？</h2>
+      <p class="text-gray-400 text-lg">专门为零基础想成为娱乐主播的同学设计</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-gray-800 rounded-2xl p-6 card-hover border border-gray-700">
+        <div class="text-4xl mb-4">🏆</div>
+        <h3 class="font-bold text-lg mb-2">一套完整方法论</h3>
+        <p class="text-gray-400 text-sm">不再迷茫，有体系有方法地开展直播事业</p>
+      </div>
+      <div class="bg-gray-800 rounded-2xl p-6 card-hover border border-gray-700">
+        <div class="text-4xl mb-4">📝</div>
+        <h3 class="font-bold text-lg mb-2">话术模板直接用</h3>
+        <p class="text-gray-400 text-sm">开播话术、互动话术、留人话术，照着说就行</p>
+      </div>
+      <div class="bg-gray-800 rounded-2xl p-6 card-hover border border-gray-700">
+        <div class="text-4xl mb-4">💪</div>
+        <h3 class="font-bold text-lg mb-2">可复制的直播能力</h3>
+        <p class="text-gray-400 text-sm">稳定开播、留住粉丝、建立影响力的实战技能</p>
+      </div>
+      <div class="bg-gray-800 rounded-2xl p-6 card-hover border border-gray-700">
+        <div class="text-4xl mb-4">💰</div>
+        <h3 class="font-bold text-lg mb-2">变现路径清晰</h3>
+        <p class="text-gray-400 text-sm">知道怎么把直播变成真正的收入</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 适合人群 -->
+<section class="py-24 bg-gray-800">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-black mb-12">这门课适合你吗？</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-left">
+      <div class="flex items-start gap-3 bg-gray-900 rounded-xl p-5">
+        <span class="text-purple-400 text-xl mt-1">✅</span>
+        <div><strong>零基础直播新人</strong><span class="text-gray-400 text-sm ml-2">想入行，不知道从哪开始</span></div>
+      </div>
+      <div class="flex items-start gap-3 bg-gray-900 rounded-xl p-5">
+        <span class="text-purple-400 text-xl mt-1">✅</span>
+        <div><strong>业余主播想提升</strong><span class="text-gray-400 text-sm ml-2">有经验但效果不理想</span></div>
+      </div>
+      <div class="flex items-start gap-3 bg-gray-900 rounded-xl p-5">
+        <span class="text-purple-400 text-xl mt-1">✅</span>
+        <div><strong>转型娱乐直播的创作者</strong><span class="text-gray-400 text-sm ml-2">从其他领域转过来的</span></div>
+      </div>
+      <div class="flex items-start gap-3 bg-gray-900 rounded-xl p-5">
+        <span class="text-purple-400 text-xl mt-1">✅</span>
+        <div><strong>直播公会新人主播</strong><span class="text-gray-400 text-sm ml-2">刚签约，需要系统培训</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 课程大纲 -->
+<section id="chapters" class="py-24 bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-black mb-4">📚 课程大纲</h2>
+      <p class="text-gray-400 text-lg">9章系统课程，从入门到实战</p>
+    </div>
+    <div class="space-y-4">
+      <!-- 第1章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-purple-400">第一章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">基础认知</h3>
+            <p class="text-gray-400 text-sm">了解行业全貌，找到适合自己的赛道 | 1课时</p>
+          </div>
+          <span class="text-xs bg-purple-900/50 text-purple-400 px-3 py-1 rounded-full">⭐ 入门</span>
+          <a href="chapter-01.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第2章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-red-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-red-400">第二章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">规则与合规风控</h3>
+            <p class="text-gray-400 text-sm">平台规则、红线禁区、账号安全 | 2课时</p>
+          </div>
+          <span class="text-xs bg-red-900/50 text-red-400 px-3 py-1 rounded-full">⭐⭐ 必学</span>
+          <a href="chapter-02.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第3章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-blue-400">第三章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">前期筹备：硬件+场景+内容</h3>
+            <p class="text-gray-400 text-sm">设备配置、场景布置、内容策划 | 2课时</p>
+          </div>
+          <span class="text-xs bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full">⭐⭐ 必学</span>
+          <a href="chapter-03.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第4章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-pink-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-pink-400">第四章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">形象管理与表现力</h3>
+            <p class="text-gray-400 text-sm">妆容造型、镜头感、话术模板 | 2课时</p>
+          </div>
+          <span class="text-xs bg-pink-900/50 text-pink-400 px-3 py-1 rounded-full">⭐⭐ 重要</span>
+          <a href="chapter-04.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第5章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-orange-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-orange-400">第五章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">实操：控场与互动核心</h3>
+            <p class="text-gray-400 text-sm">互动法则、突发处理、完整话术时间轴 | 3课时</p>
+          </div>
+          <span class="text-xs bg-orange-900/50 text-orange-400 px-3 py-1 rounded-full">⭐⭐⭐ 核心</span>
+          <a href="chapter-05.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第6章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-yellow-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-yellow-400">第六章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">粉丝生态与礼物转化</h3>
+            <p class="text-gray-400 text-sm">粉丝分层、转化路径、礼物引导 | 2课时</p>
+          </div>
+          <span class="text-xs bg-yellow-900/50 text-yellow-400 px-3 py-1 rounded-full">⭐⭐⭐ 核心</span>
+          <a href="chapter-06.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第7章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-green-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-green-400">第七章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">直播流量运营与短视频引流</h3>
+            <p class="text-gray-400 text-sm">公域私域、短视频引流、流量提升 | 1课时</p>
+          </div>
+          <span class="text-xs bg-green-900/50 text-green-400 px-3 py-1 rounded-full">⭐⭐ 提升</span>
+          <a href="chapter-07.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第8章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-cyan-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-cyan-400">第八章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">进阶提升：数据分析与长期发展</h3>
+            <p class="text-gray-400 text-sm">核心指标解读、数据复盘、职业规划 | 1课时</p>
+          </div>
+          <span class="text-xs bg-cyan-900/50 text-cyan-400 px-3 py-1 rounded-full">⭐⭐ 提升</span>
+          <a href="chapter-08.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+      <!-- 第9章 -->
+      <div class="bg-gray-800 rounded-2xl p-6 border border-gray-700 card-hover">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-indigo-900/50 rounded-xl flex items-center justify-center text-2xl font-black text-indigo-400">第九章</div>
+          <div class="flex-1">
+            <h3 class="font-bold text-lg">实操考核与答疑复盘</h3>
+            <p class="text-gray-400 text-sm">模拟考核、自我评分、知识地图 | 2课时</p>
+          </div>
+          <span class="text-xs bg-indigo-900/50 text-indigo-400 px-3 py-1 rounded-full">⭐⭐⭐ 实战</span>
+          <a href="chapter-09.html" class="text-purple-400 hover:text-purple-300 text-sm">查看内容 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 免费样课 -->
+<section id="samples" class="py-24 bg-gray-800">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-black mb-4">🔥 免费样课</h2>
+      <p class="text-gray-400 text-lg">先学再买，降低决策门槛</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-purple-900/40 to-gray-900 rounded-2xl p-6 border border-purple-500/30 card-hover">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="bg-purple-600 text-white text-xs px-3 py-1 rounded-full">🔥 引流款 免费</span>
+        </div>
+        <h3 class="font-bold text-xl mb-2">娱乐主播话术逐字稿</h3>
+        <p class="text-gray-400 text-sm mb-4">开播暖场话术、留人公式、拉互动话术、引导关注、下播话术</p>
+        <p class="text-xs text-gray-500 mb-4">适用：娱乐直播新人主播，开播前必学</p>
+        <a href="sample-01.html" class="block text-center bg-purple-600 text-white py-3 rounded-xl font-medium hover:bg-purple-700 transition">开始学习 →</a>
+      </div>
+      <div class="bg-gradient-to-br from-blue-900/40 to-gray-900 rounded-2xl p-6 border border-blue-500/30 card-hover">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full">💡 信任款 低价</span>
+        </div>
+        <h3 class="font-bold text-xl mb-2">4大赛道选择指南</h3>
+        <p class="text-gray-400 text-sm mb-4">颜值/才艺/脱口秀/情感电台四大赛道详解，帮你找到最适合的方向</p>
+        <p class="text-xs text-gray-500 mb-4">适用：还没确定方向的新人</p>
+        <a href="sample-02.html" class="block text-center bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">开始学习 →</a>
+      </div>
+      <div class="bg-gradient-to-br from-pink-900/40 to-gray-900 rounded-2xl p-6 border border-pink-500/30 card-hover">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="bg-pink-600 text-white text-xs px-3 py-1 rounded-full">💰 利润款 完整课程</span>
+        </div>
+        <h3 class="font-bold text-xl mb-2">7天起号计划</h3>
+        <p class="text-gray-400 text-sm mb-4">7天每日任务表，账号搭建→内容测试→首播→数据复盘→节奏建立</p>
+        <p class="text-xs text-gray-500 mb-4">适用：准备正式启动直播的新人</p>
+        <a href="sample-03.html" class="block text-center bg-pink-600 text-white py-3 rounded-xl font-medium hover:bg-pink-700 transition">开始学习 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于课程 -->
+<section id="about" class="py-24 bg-gray-900">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="bg-gray-800 rounded-3xl p-10 border border-gray-700">
+      <h2 class="text-3xl font-black mb-8 text-center">🚀 新手必读：3分钟了解这门课</h2>
+      <div class="space-y-6 text-gray-300">
+        <p>这是一门专门为零基础想成为娱乐主播的同学设计的培训课程。</p>
+        <p><strong class="text-white">课程有多久？</strong> 16课时 = 线下2天 / 线上8次课，每次2课时</p>
+        <p><strong class="text-white">课程很难吗？</strong> 一点都不！课程专门为小白设计，有大量可以直接套用的话术和模板，跟着学就能会用。</p>
+        <div class="border-t border-gray-700 pt-6 mt-6">
+          <h3 class="font-bold text-lg mb-4">课程培养目标：</h3>
+          <ul class="space-y-2">
+            <li>✅ 帮助零基础学员快速掌握娱乐直播核心逻辑</li>
+            <li>✅ 提升主播表现力、互动能力、控场能力与粉丝运营能力</li>
+            <li>✅ 掌握直播合规、流量获取、礼物转化、团队协作等实操技能</li>
+            <li>✅ 培养长期直播思维，规避常见误区，打造可持续的直播IP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 联系/CTA -->
+<section id="contact" class="py-24 bg-gradient-to-br from-purple-900 to-pink-900">
+  <div class="max-w-2xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-black mb-6">想开始学习？先加微信！</h2>
+    <p class="text-purple-200 text-lg mb-10">扫描下方二维码，添加客服微信，获取完整课程购买链接和学员手册</p>
+    <div class="bg-white rounded-3xl p-8 inline-block">
+      <img src="https://tmpfiles.org/dl/34065071/wechat-qr.jpg" alt="微信二维码" class="w-64 h-64 object-contain">
+      <p class="text-gray-600 text-sm mt-4">长按识别二维码</p>
+    </div>
+    <p class="text-purple-200 text-sm mt-6 opacity-60">客服时间：每日 9:00 - 22:00</p>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-900 border-t border-gray-800 py-12">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <p class="text-gray-500 text-sm">© 2026 六一朝壹传媒 · 娱乐直播培训课程 · 完整版 v1.5</p>
+  </div>
+</footer>
+
+
+<!-- 微信二维码弹窗 -->
+<div class="wechat-modal" id="wechatModal" onclick="if(event.target===this)closeWechatModal()">
+  <span class="wechat-modal-close" onclick="closeWechatModal()">&times;</span>
+  <div class="wechat-modal-content">
+    <h3 style="color:#333;font-size:20px;font-weight:bold;margin-bottom:16px;">扫码添加微信</h3>
+    <img src="wechat-qr.jpg" alt="微信二维码" style="width:260px;height:260px;border-radius:8px;">
+    <p style="color:#666;font-size:14px;margin-top:16px;">长按识别二维码 · 备注"课程"优先通过</p>
+  </div>
+</div>
+<script>
+function openWechatModal(){document.getElementById('wechatModal').classList.add('active');}
+function closeWechatModal(){document.getElementById('wechatModal').classList.remove('active');}
+</script>
+
+</body>
+</html>

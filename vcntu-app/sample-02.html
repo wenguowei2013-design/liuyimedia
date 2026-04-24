@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【样课】4大赛道选择指南 - 六一朝壹传媒</title>
+  <script src="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.js"></script>
+  
+  <style>* { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+    /* 微信二维码弹窗 */
+    .wechat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal-content { background: white; border-radius: 16px; padding: 32px; text-align: center; max-width: 360px; }
+    .wechat-modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 32px; cursor: pointer; }
+
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+<nav class="bg-gray-800 border-b border-gray-700 px-6 py-4">
+  <div class="max-w-4xl mx-auto flex items-center gap-4">
+    <a href="index.html" class="text-purple-400 hover:text-purple-300">← 返回首页</a>
+    <span class="text-gray-500">|</span>
+    <span class="text-sm text-gray-400">💡 信任款 · 低价体验</span>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-4 py-12">
+  <div class="bg-blue-900/30 border border-blue-500/30 rounded-2xl p-6 mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full">💡 信任款 低价体验</span>
+      <span class="text-blue-400 text-sm">建议学习时长：30分钟</span>
+    </div>
+    <h1 class="text-4xl font-black mb-2">娱乐直播4大赛道选择指南</h1>
+    <p class="text-gray-400">找到最适合你的直播方向</p>
+  </div>
+
+  <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 mb-8">
+    <h2 class="text-2xl font-bold mb-4">🎯 为什么赛道选择很重要？</h2>
+    <p class="text-gray-300 leading-relaxed">选择不对，努力白费。在娱乐直播领域，不同赛道对主播的能力要求、变现难度、成长路径完全不同。选择一个<strong class="text-white">适合自己的赛道</strong>，能让你事半功倍，更快找到直播的节奏和信心。</p>
+  </div>
+
+  <div class="space-y-6">
+    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold mb-6">📊 四大赛道详解</h2>
+      <div class="space-y-4">
+        <div class="bg-purple-900/20 border border-purple-500/30 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-purple-400">🎨 赛道一：颜值聊天</h3>
+            <span class="text-xs bg-purple-900/50 text-purple-400 px-3 py-1 rounded-full">最常见</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+            <div><strong class="text-white">适合人群</strong><p class="text-gray-400">颜值在线，善于聊天，有亲和力</p></div>
+            <div><strong class="text-white">变现难度</strong><p class="text-yellow-400">⭐⭐⭐ 中等</p></div>
+            <div><strong class="text-white">起步要点</strong><p class="text-gray-400">形象管理+聊天话题准备</p></div>
+          </div>
+          <div class="bg-gray-900 rounded-lg p-3 text-gray-300 text-sm">
+            <strong class="text-white">核心逻辑：</strong>靠个人魅力留住游客，通过聊天互动建立情感连接，进而转化打赏
+          </div>
+        </div>
+
+        <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-blue-400">🎤 赛道二：才艺展示</h3>
+            <span class="text-xs bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full">粉丝忠诚度高</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+            <div><strong class="text-white">适合人群</strong><p class="text-gray-400">有专业才艺（唱歌/跳舞/乐器等）</p></div>
+            <div><strong class="text-white">变现难度</strong><p class="text-green-400">⭐⭐ 较易</p></div>
+            <div><strong class="text-white">起步要点</strong><p class="text-gray-400">才艺水平+持续创作能力</p></div>
+          </div>
+          <div class="bg-gray-900 rounded-lg p-3 text-gray-300 text-sm">
+            <strong class="text-white">核心逻辑：</strong>靠专业才艺吸引精准粉丝，粉丝因为认可你的才艺而关注和打赏，粘性高
+          </div>
+        </div>
+
+        <div class="bg-yellow-900/20 border border-yellow-500/30 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-yellow-400">😂 赛道三：搞笑娱乐</h3>
+            <span class="text-xs bg-yellow-900/50 text-yellow-400 px-3 py-1 rounded-full">流量大</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+            <div><strong class="text-white">适合人群</strong><p class="text-gray-400">有幽默感，能持续产出有趣内容</p></div>
+            <div><strong class="text-white">变现难度</strong><p class="text-yellow-400">⭐⭐⭐ 中等</p></div>
+            <div><strong class="text-white">起步要点</strong><p class="text-gray-400">内容策划+搞笑素材积累</p></div>
+          </div>
+          <div class="bg-gray-900 rounded-lg p-3 text-gray-300 text-sm">
+            <strong class="text-white">核心逻辑：</strong>靠欢乐搞笑内容吸引大量观众，观众基数大，但粉丝变现能力一般
+          </div>
+        </div>
+
+        <div class="bg-pink-900/20 border border-pink-500/30 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-bold text-pink-400">💕 赛道四：情感陪伴</h3>
+            <span class="text-xs bg-pink-900/50 text-pink-400 px-3 py-1 rounded-full">大哥粘性高</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+            <div><strong class="text-white">适合人群</strong><p class="text-gray-400">善于倾听，有共情能力，能建立深度连接</p></div>
+            <div><strong class="text-white">变现难度</strong><p class="text-green-400">⭐⭐ 较易</p></div>
+            <div><strong class="text-white">起步要点</strong><p class="text-gray-400">情感话术+倾听能力</p></div>
+          </div>
+          <div class="bg-gray-900 rounded-lg p-3 text-gray-300 text-sm">
+            <strong class="text-white">核心逻辑：</strong>大哥少但粘性极高，愿意为情感陪伴付费，月榜消费能力强
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold mb-6">✅ 赛道选择自测题</h2>
+      <div class="space-y-4 text-gray-300">
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <p class="font-medium mb-3">Q1：你的核心优势是什么？</p>
+          <p class="text-sm text-gray-400">A. 颜值和亲和力 → 颜值聊天<br>B. 唱歌/跳舞/乐器等才艺 → 才艺展示<br>C. 幽默感和搞笑能力 → 搞笑娱乐<br>D. 善于倾听和共情 → 情感陪伴</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <p class="font-medium mb-3">Q2：你希望用什么方式吸引粉丝？</p>
+          <p class="text-sm text-gray-400">A. 和游客聊天互动 → 颜值聊天/情感陪伴<br>B. 展示才艺表演 → 才艺展示<br>C. 产出搞笑内容 → 搞笑娱乐</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <p class="font-medium mb-3">Q3：你更看重什么？</p>
+          <p class="text-sm text-gray-400">A. 快速积累粉丝（流量大）→ 搞笑娱乐<br>B. 粉丝忠诚度高（粘性强）→ 才艺展示/情感陪伴<br>C. 收入稳定（大哥付费强）→ 情感陪伴</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-2xl p-8 border border-blue-500/30 text-center">
+      <h2 class="text-xl font-bold mb-4">还在犹豫？解锁完整课程！</h2>
+      <p class="text-gray-300 text-sm mb-6">完整16课时包含四大赛道的深度讲解，以及每个赛道的具体操作方法</p>
+      <a href="index.html#contact" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition">添加微信，获取完整课程 →</a>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="index.html" class="text-purple-400 hover:text-purple-300">← 返回课程首页</a>
+  </div>
+</main>
+
+<footer class="bg-gray-800 border-t border-gray-700 py-8 mt-16">
+  <div class="text-center text-gray-500 text-sm">© 2026 六一朝壹传媒 · 娱乐直播培训课程 · 样课二</div>
+</footer>
+
+<!-- 微信二维码弹窗 -->
+<div class="wechat-modal" id="wechatModal" onclick="if(event.target===this)closeWechatModal()">
+  <span class="wechat-modal-close" onclick="closeWechatModal()">&times;</span>
+  <div class="wechat-modal-content">
+    <h3 style="color:#333;font-size:20px;font-weight:bold;margin-bottom:16px;">扫码添加微信</h3>
+    <img src="wechat-qr.jpg" alt="微信二维码" style="width:260px;height:260px;border-radius:8px;">
+    <p style="color:#666;font-size:14px;margin-top:16px;">长按识别二维码 · 备注"课程"优先通过</p>
+  </div>
+</div>
+<script>
+function openWechatModal(){document.getElementById('wechatModal').classList.add('active');}
+function closeWechatModal(){document.getElementById('wechatModal').classList.remove('active');}
+</script>
+
+</body>
+</html>

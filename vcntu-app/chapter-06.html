@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第六章 粉丝生态与礼物转化 - 娱乐直播培训课程</title>
+  <script src="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.js"></script>
+  
+  <style>* { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; }
+    /* 微信二维码弹窗 */
+    .wechat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal-content { background: white; border-radius: 16px; padding: 32px; text-align: center; max-width: 360px; }
+    .wechat-modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 32px; cursor: pointer; }
+
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+<nav class="bg-gray-800 border-b border-gray-700 px-6 py-4">
+  <div class="max-w-4xl mx-auto flex items-center gap-4">
+    <a href="index.html" class="text-purple-400 hover:text-purple-300">← 返回首页</a>
+    <span class="text-gray-500">|</span>
+    <span class="text-sm text-gray-400">第六章 · 粉丝生态与礼物转化 · 2课时</span>
+  </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-4 py-12">
+  <div class="mb-8">
+    <span class="text-xs bg-yellow-900/50 text-yellow-400 px-3 py-1 rounded-full">⭐⭐⭐ 核心</span>
+    <h1 class="text-4xl font-black mt-4 mb-2">第六章：粉丝生态与礼物转化</h1>
+    <p class="text-gray-400">粉丝分层管理、转化路径维护、礼物合理引导 | 2课时</p>
+  </div>
+
+  <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 mb-8">
+    <h2 class="text-2xl font-bold mb-6">🚀 学习目标</h2>
+    <ul class="space-y-2 text-gray-300">
+      <li>✅ 掌握粉丝五层分级管理体系</li>
+      <li>✅ 学会各层级粉丝的转化路径和维护话术</li>
+      <li>✅ 掌握礼物转化的三大原则</li>
+      <li>✅ 学会合理的礼物引导时机和话术</li>
+    </ul>
+  </div>
+
+  <div class="space-y-8">
+    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold mb-6">粉丝五层分级管理</h2>
+      <div class="space-y-3">
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <div class="flex items-center justify-between mb-2"><h3 class="font-bold text-gray-400">第1层：游客</h3><span class="text-xs bg-gray-700 text-gray-400 px-3 py-1 rounded-full">路过型</span></div>
+          <p class="text-gray-400 text-sm">随机进入直播间的路人，零成本，随时可能离开</p>
+          <p class="text-purple-400 text-sm mt-2">转化路径：欢迎语 → 抛出话题 → 引导关注</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <div class="flex items-center justify-between mb-2"><h3 class="font-bold text-blue-400">第2层：新粉</h3><span class="text-xs bg-blue-900/50 text-blue-400 px-3 py-1 rounded-full">关注型</span></div>
+          <p class="text-gray-400 text-sm">已关注但互动不多，需要持续培养</p>
+          <p class="text-blue-400 text-sm mt-2">维护重点：点名欢迎、偶尔点名互动、建立熟悉感</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <div class="flex items-center justify-between mb-2"><h3 class="font-bold text-green-400">第3层：老粉</h3><span class="text-xs bg-green-900/50 text-green-400 px-3 py-1 rounded-full">活跃型</span></div>
+          <p class="text-gray-400 text-sm">经常来直播间，互动频繁，有一定消费意愿</p>
+          <p class="text-green-400 text-sm mt-2">维护重点：专属互动、记住名字、偶尔小礼物感谢</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <div class="flex items-center justify-between mb-2"><h3 class="font-bold text-pink-400">第4层：铁粉</h3><span class="text-xs bg-pink-900/50 text-pink-400 px-3 py-1 rounded-full">死忠型</span></div>
+          <p class="text-gray-400 text-sm">每场必来，经常打赏，是直播间的核心力量</p>
+          <p class="text-pink-400 text-sm mt-2">维护重点：特殊称号、专属福利、深度情感连接</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-yellow-500/50">
+          <div class="flex items-center justify-between mb-2"><h3 class="font-bold text-yellow-400">第5层：大哥</h3><span class="text-xs bg-yellow-900/50 text-yellow-400 px-3 py-1 rounded-full">消费型</span></div>
+          <p class="text-gray-400 text-sm">愿意大额打赏的核心金主，是直播间的重要收入来源</p>
+          <p class="text-yellow-400 text-sm mt-2">维护重点：一对一维护、私信互动、记住喜好、专属感谢</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold mb-6">礼物转化三大原则</h2>
+      <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-4">
+        <p class="text-red-400 font-bold mb-2">⚠️ 道德绑架话术是违规行为！</p>
+        <p class="text-gray-400 text-sm">"你不刷礼物就是不爱我"、"刷到多少我才..."这些话绝对不能说！</p>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-green-900/20 border border-green-500/30 rounded-xl p-5">
+          <h3 class="font-bold text-green-400 mb-2">原则一：价值匹配</h3>
+          <p class="text-gray-300 text-sm">礼物引导要与内容价值匹配，不能让观众觉得"不值"。先把内容做好，再用合适方式引导。</p>
+        </div>
+        <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5">
+          <h3 class="font-bold text-blue-400 mb-2">原则二：自然引导</h3>
+          <p class="text-gray-300 text-sm">在粉丝开心、有互动积极性的时候引导，而不是在粉丝沉默时强求。</p>
+        </div>
+        <div class="bg-purple-900/20 border border-purple-500/30 rounded-xl p-5">
+          <h3 class="font-bold text-purple-400 mb-2">原则三：真诚感谢</h3>
+          <p class="text-gray-300 text-sm">对每一份打赏都要真诚感谢，记住核心大哥的喜好，让他们感受到被重视。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+      <h2 class="text-2xl font-bold mb-6">礼物引导四大最佳时机</h2>
+      <div class="space-y-3">
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <h4 class="font-bold text-yellow-400 mb-1">🎯 时机一：收到礼物时</h4>
+          <p class="text-gray-300 text-sm">感谢完打赏之后，顺势引导："感谢XX的支持，有能力的也支持一下主播~"</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <h4 class="font-bold text-pink-400 mb-1">🎯 时机二：直播氛围最高点</h4>
+          <p class="text-gray-300 text-sm">当大家都玩得很开心、互动很活跃的时候，轻轻引导一下效果最好</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <h4 class="font-bold text-blue-400 mb-1">🎯 时机三：达成小成就时</h4>
+          <p class="text-gray-300 text-sm">"今天直播间的氛围太棒了！感谢大家，有能力的支持一下，我们冲一冲~"</p>
+        </div>
+        <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+          <h4 class="font-bold text-green-400 mb-1">🎯 时机四：展示才艺后</h4>
+          <p class="text-gray-300 text-sm">刚展示完一个精彩才艺后："谢谢大家喜欢，有礼物的捧个钱场~"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-12 flex justify-between items-center">
+    <a href="chapter-05.html" class="text-purple-400 hover:text-purple-300">← 上一章：控场与互动核心</a>
+    <a href="chapter-07.html" class="bg-purple-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-purple-700 transition">下一章：流量运营 →</a>
+  </div>
+</main>
+
+<footer class="bg-gray-800 border-t border-gray-700 py-8 mt-16">
+  <div class="text-center text-gray-500 text-sm">© 2026 六一朝壹传媒 · 娱乐直播培训课程 · 第六章</div>
+</footer>
+
+<!-- 微信二维码弹窗 -->
+<div class="wechat-modal" id="wechatModal" onclick="if(event.target===this)closeWechatModal()">
+  <span class="wechat-modal-close" onclick="closeWechatModal()">&times;</span>
+  <div class="wechat-modal-content">
+    <h3 style="color:#333;font-size:20px;font-weight:bold;margin-bottom:16px;">扫码添加微信</h3>
+    <img src="wechat-qr.jpg" alt="微信二维码" style="width:260px;height:260px;border-radius:8px;">
+    <p style="color:#666;font-size:14px;margin-top:16px;">长按识别二维码 · 备注"课程"优先通过</p>
+  </div>
+</div>
+<script>
+function openWechatModal(){document.getElementById('wechatModal').classList.add('active');}
+function closeWechatModal(){document.getElementById('wechatModal').classList.remove('active');}
+</script>
+
+</body>
+</html>
